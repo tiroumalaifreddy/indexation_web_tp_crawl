@@ -33,6 +33,13 @@ def get_sitemaps(url_main : str):
     rp.read()
     return rp.site_maps()
 
+def xml_type_sitemap(url_xml : str):
+    response = urllib.request.urlopen(url_xml)
+    xml = BeautifulSoup(response)
+    sitemaps = xml.findAll('sitemap')
+    if sitemaps:
+        return True
+
 def get_urls_from_sitemap(url_sitemap : str):
     list_urls_from_sitemap = []
     response = urllib.request.urlopen(url_sitemap)
