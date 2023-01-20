@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.test.ipynb
+.list_external.txt
+.list_internal.txt
+.file_base.txt
