@@ -71,6 +71,6 @@ def get_urls_from_webpage(url_page : str):
         for link in page.find_all('a'):
             new_link = link.get('href')
             base_url = "{0.scheme}://{0.netloc}/".format(urlsplit(new_link))
-            if validators.url(base_url):
-                urls.append(base_url)
+            if validators.url(new_link):
+                urls.append(new_link)
     return urls
