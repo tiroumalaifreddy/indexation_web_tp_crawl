@@ -14,6 +14,7 @@ list_url_found_external_base = []
 def run(onlyexternal, url_main : str = 'https://www.scharles.net/'):
     global list_url_found_internal
     global list_url_found_external
+    global list_url_found_external_base
     if functions.authorized_fetch_whole_site(url_main = url_main) == False:
         print("Error : website does not allow crawling")
     else:
