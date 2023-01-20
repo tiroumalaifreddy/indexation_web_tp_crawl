@@ -11,7 +11,7 @@ list_url_found_external_base = []
 @click.command()
 @click.option('--url_main') 
 @click.option('--onlyexternal', is_flag=True)
-def run(onlyexternal, url_main : str = 'https://www.ensai.fr', ):
+def run(onlyexternal, url_main : str = 'https://www.scharles.net/'):
     global list_url_found_internal
     global list_url_found_external
     if functions.authorized_fetch_whole_site(url_main = url_main) == False:
@@ -30,6 +30,8 @@ def run(onlyexternal, url_main : str = 'https://www.ensai.fr', ):
             list_url_found_internal= list(itertools.chain(*list_url_found_internal))
             list_url_found_internal = functions.authorized_fetch_pages(url_main, list_url_found_internal)
             list_url_found_internal = [*set(list_url_found_internal)]
+        if len(list_url_found_internal) == 0:
+            list_url_found_internal.append(url_main)
         i = 0
         if onlyexternal:
             while len(list_url_found_external) < 50 and i != len(list_url_found_internal):
@@ -47,7 +49,7 @@ def run(onlyexternal, url_main : str = 'https://www.ensai.fr', ):
                 time.sleep(5)
             j = 0
             length_list = len(list_url_found_external)
-            while len(list_url_found_external) < 50 and j <= length_list:
+            while len(list_url_found_external) < 50 and j < length_list:
                 url_page = list_url_found_external[j]
                 list_new_pages = functions.get_urls_from_webpage(url_page = url_page)
                 for new_link in list_new_pages:
@@ -76,7 +78,7 @@ def run(onlyexternal, url_main : str = 'https://www.ensai.fr', ):
                 time.sleep(5)
             j = 0
             length_list = len(list_url_found_external)
-            while len(list_url_found_external) < 50 and j <= length_list:
+            while len(list_url_found_external) < 50 and j < length_list:
                 url_page = list_url_found_external[j]
                 list_new_pages = functions.get_urls_from_webpage(url_page = url_page)
                 for new_link in list_new_pages:
@@ -90,13 +92,6 @@ def run(onlyexternal, url_main : str = 'https://www.ensai.fr', ):
                 j += 1
                 length_list = len(list_url_found_external)
                 time.sleep(5)
-            # for url_page in list_url_found_internal:
-            #     list_new_pages = functions.get_urls_from_webpage(url_page = url_page)
-            #     for new_link in list_new_pages:
-            #         if new_link not in list_url_found_external:
-            #             list_url_found_external.append(new_link)
-            # for url_page in list_url_found_external:
-            #     run(url_page)
         list_url_found_external = list_url_found_external[:50]
         file_internal = 'exports/list_internal-' + time.strftime("%Y%m%d-%H%M%S") + '.txt'
         file_external = 'exports/list_external-' + time.strftime("%Y%m%d-%H%M%S") + '.txt'
