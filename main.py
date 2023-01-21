@@ -11,7 +11,7 @@ list_url_found_external_base = []
 @click.command()
 @click.option('--url_main') 
 @click.option('--onlyexternal', is_flag=True)
-def run(onlyexternal, url_main : str = 'https://www.scharles.net/'):
+def run(onlyexternal, url_main : str):
     global list_url_found_internal
     global list_url_found_external
     global list_url_found_external_base
@@ -42,7 +42,7 @@ def run(onlyexternal, url_main : str = 'https://www.scharles.net/'):
                     base_url = "{0.scheme}://{0.netloc}/".format(urlsplit(new_link))
                     domain = urlparse(base_url).netloc
                     domain_main = urlparse(url_main).netloc
-                    if new_link not in list_url_found_external and new_link not in list_url_found_internal and domain != domain_main:
+                    if new_link not in list_url_found_external and domain != domain_main:
                             list_url_found_external.append(new_link)
                     if base_url not in list_url_found_external_base and base_url != url_main:
                             list_url_found_external_base.append(base_url)
@@ -57,7 +57,7 @@ def run(onlyexternal, url_main : str = 'https://www.scharles.net/'):
                     base_url = "{0.scheme}://{0.netloc}/".format(urlsplit(new_link))
                     domain = urlparse(base_url).netloc
                     domain_main = urlparse(url_main).netloc
-                    if new_link not in list_url_found_external and new_link not in list_url_found_internal and domain != domain_main:
+                    if new_link not in list_url_found_external and domain != domain_main:
                             list_url_found_external.append(new_link)
                     if base_url not in list_url_found_external_base and base_url != url_main:
                             list_url_found_external_base.append(base_url)

@@ -48,3 +48,7 @@ python3.8 main.py --url_main https://www.ensai.fr
 Deux fichiers .txt seront alors crées dans le dossier exports:
 -list_internal-(...) : liste des sites trouvées dans les sitemaps
 -list_external-(...) : liste des sites en analysant les pages du site
+
+## Limites
+
+Dans le cas où le fichier ```robots.txt``` du site donné en entrée n'indique aucun sitemaps, la liste "interne" ne comportera que l'URL donnée en entrée. En revanche, si l'option ```onlyexternal``` n'est pas donnée (ie égal à ```False```), la liste externe devrait comprendre un grand nombre de pages "internes" au site.

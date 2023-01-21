@@ -64,13 +64,11 @@ def get_urls_from_webpage(url_page : str):
     response = requests.get(url_page)
     if response.status_code != 200:
         urls = []
-    #response = urllib.request.urlopen(url_page)
     else:
         page = BeautifulSoup(response.text)
         urls = []
         for link in page.find_all('a'):
             new_link = link.get('href')
-            base_url = "{0.scheme}://{0.netloc}/".format(urlsplit(new_link))
             if validators.url(new_link):
                 urls.append(new_link)
     return urls
