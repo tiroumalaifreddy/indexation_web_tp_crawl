@@ -8,7 +8,7 @@ Une option est disponible pour n'extraire que les pages externes au site.
 
 A partir d'une URL d'entrée unique (exemple: https://ensai.fr/), le crawler écrit dans deux fichiers
 .txt les URLs des pages trouvées. La liste "interne" comprend les pages trouvées dans les sitemaps
-tandis que la liste "externe" comprend les pages trouvées en scrapant le site.
+tandis que la liste "externe" comprend les pages trouvées en scrapant le site. Le crawler respecte les règles de politesse indiquées dans le fichier robots.txt : les pages interdites par le site ne sont pas ajoutées dans les listes.
 
 
 
